@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Monitor</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .active {
+            color: green;
+        }
+        .inactive {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Device Monitoring</h1>
+    <table>
+        <tr>
+            <th>Group</th>
+            <th>Hostname</th>
+            <th>IP Address</th>
+            <th>Status</th>
+        </tr>
+        {% for device in devices %}
+        <tr>
+            <td>{{ device.group }}</td>
+            <td>{{ device.hostname }}</td>
+            <td>{{ device.ip }}</td>
+            <td class="{{ 'active' if device.status == 'Active' else 'inactive' }}">{{ device.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
